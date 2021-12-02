@@ -1,58 +1,70 @@
-Contribution: 2021-02-18 20:00
+## Craft
 
-Contribution: 2021-02-18 20:01
+Minecraft clone for Windows, Mac OS X and Linux. Just a few thousand lines of C using modern OpenGL (shaders). Online multiplayer support is included using a Python-based server.
 
-Contribution: 2021-02-18 20:02
+### Features
 
-Contribution: 2021-02-18 20:03
+* Simple but nice looking terrain generation using perlin / simplex noise.
+* More than 10 types of blocks and more can be added easily.
+* Supports plants (grass, flowers, trees, etc.) and transparency (glass).
+* Simple clouds in the sky (they don't move).
+* Day / night cycles and a textured sky dome.
+* World changes persisted in a sqlite3 database.
+* Multiplayer support!
 
-Contribution: 2021-02-18 20:04
+### Multiplayer
 
-Contribution: 2021-02-22 20:00
+After many years, craft.michaelfogleman.com has been taken down. See the [Server](#server) section for info on self-hosting.
 
-Contribution: 2021-02-23 20:00
+#### Client
 
-Contribution: 2021-02-25 20:00
+You can connect to a server with command line arguments...
 
-Contribution: 2021-02-25 20:01
+```bash
+./craft [HOST [PORT]]
+```
 
-Contribution: 2021-02-25 20:02
+Or, with the "/online" command in the game itself.
+    
+    /online [HOST [PORT]]
 
-Contribution: 2021-02-26 20:00
+#### Server
 
-Contribution: 2021-02-26 20:01
+You can run your own server or connect to mine. The server is written in Python
+but requires a compiled DLL so it can perform the terrain generation just like
+the client.
 
-Contribution: 2021-02-26 20:02
+```bash
+gcc -std=c99 -O3 -fPIC -shared -o world -I src -I deps/noise deps/noise/noise.c src/world.c
+python server.py [HOST [PORT]]
+```
 
-Contribution: 2021-03-01 20:00
+### Controls
 
-Contribution: 2021-03-01 20:01
+- WASD to move forward, left, backward, right.
+- Space to jump.
+- Left Click to destroy a block.
+- Right Click or Cmd + Left Click to create a block.
+- Ctrl + Right Click to toggle a block as a light source.
+- 1-9 to select the block type to create.
+- E to cycle through the block types.
+- Tab to toggle between walking and flying.
+- ZXCVBN to move in exact directions along the XYZ axes.
+- Left shift to zoom.
+- F to show the scene in orthographic mode.
+- O to observe players in the main view.
+- P to observe players in the picture-in-picture view.
+- T to type text into chat.
+- Forward slash (/) to enter a command.
+- Backquote (`) to write text on any block (signs).
+- Arrow keys emulate mouse movement.
+- Enter emulates mouse click.
 
-Contribution: 2021-03-01 20:02
+#### Dependencies
 
-Contribution: 2021-03-01 20:03
-
-Contribution: 2021-03-01 20:04
-
-Contribution: 2021-03-04 20:00
-
-Contribution: 2021-03-04 20:01
-
-Contribution: 2021-03-04 20:02
-
-Contribution: 2021-03-04 20:03
-
-Contribution: 2021-03-05 20:00
-
-Contribution: 2021-03-05 20:01
-
-Contribution: 2021-03-05 20:02
-
-Contribution: 2021-03-08 20:00
-
-Contribution: 2021-03-08 20:01
-
-Contribution: 2021-03-08 20:02
-
-Contribution: 2021-03-09 20:00
-
+* GLEW is used for managing OpenGL extensions across platforms.
+* GLFW is used for cross-platform window management.
+* CURL is used for HTTPS / SSL POST for the authentication process.
+* lodepng is used for loading PNG textures.
+* sqlite3 is used for saving the blocks added / removed by the user.
+* tinycthread is used for cross-platform threading.
